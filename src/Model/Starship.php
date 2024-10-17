@@ -4,7 +4,7 @@ namespace App\Model;
 
 class Starship
 {
-    public function __construct(private int $id, private string $name, private string $class, private string $captain, private string $status)
+    public function __construct(private int $id, private string $name, private string $class, private string $captain, private ShipStatusEnum $status)
     {
     }
 
@@ -28,8 +28,22 @@ class Starship
         return $this->captain;
     }
 
-    public function getStatus(): string
+    public function getStatus(): ShipStatusEnum
     {
         return $this->status;
+    }
+
+    public function getStatusString(): string
+    {
+        return $this->status->value;
+    }
+
+    public function getStatusImageFilename(): string
+    {
+        return match ($this->status) {
+            ShipStatusEnum::WAITING => 'images/status-waiting.png',
+            ShipStatusEnum::IN_PROGRESS => 'images/status-in-progress.png',
+            ShipStatusEnum::COMPLETED => 'images/status-complete.png',
+        };
     }
 }
