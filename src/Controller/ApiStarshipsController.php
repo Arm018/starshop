@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Model\Starship;
 use App\Repository\StarshipRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,8 +23,7 @@ class ApiStarshipsController extends AbstractController
     {
         $starship = $repository->find($id);
 
-        if (!$starship)
-        {
+        if (!$starship) {
             throw $this->createNotFoundException('Starship not found');
         }
 
