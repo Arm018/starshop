@@ -13,6 +13,10 @@ class HomeController extends AbstractController
     #[Route('/')]
     public function homepage(): Response
     {
-        return new Response('<strong>StarShop</strong>');
+        $countStarship = 123;
+
+        return $this->render('home/home.html.twig', [
+            'count_starship' => $countStarship,
+        ]);
     }
 }
